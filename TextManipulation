@@ -1,0 +1,28 @@
+EXample text
+
+2025-01-22 10:23:45 INFO [user1] Operation A successful
+2025-01-22 10:24:15 ERROR [user2] Operation B failed
+2025-01-22 10:25:05 INFO [user3] Operation C successful
+2025-01-22 10:25:45 ERROR [user1] Operation D failed
+2025-01-22 10:26:25 INFO [user2] Operation E successful
+
+task1: Extract only the ERROR logs from the file.
+
+  $grep 'ERROR' server.log
+
+task2: Convert the ERROR logs to uppercase.
+
+  $grep 'ERROR' server.log | tr 'a-z' 'A-Z'
+
+task3: Remove the timestamp and retain only the log level, user, and message.
+
+  $grep 'ERROR' server.log | tr 'a-z' 'A-Z' | sed 's/^[^ ]* [^ ]* //'
+
+task4: Sort the resulting output by user (alphabetically).
+
+  $grep 'ERROR' server.log | tr 'a-z' 'A-Z' | sed 's/^[^ ]* [^ ]* //' | sort -t'[' -k2
+
+finally we can use it like : 
+
+  $grep 'ERROR' server.log | tr 'a-z' 'A-Z' | sed 's/^[^ ]* [^ ]* //' | sort -t'[' -k2
+  
